@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SolarSystem from './components/SolarSystem';
 import ConfigurationPanel from './components/ConfigurationPanel';
 import { defaultPlanets } from './data/defaultPlanets';
