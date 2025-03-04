@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+dist/
+.vite/
+.bolt/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pnpm-error.log*
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Build artifacts
+*.log
+*.cache
+.eslintcache
+coverage/
+
+# TypeScript
+*.tsbuildinfo
