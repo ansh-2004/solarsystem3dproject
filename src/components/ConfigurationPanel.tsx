@@ -31,51 +31,52 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
     }
   };
 
+  
   return (
-    <div className="bg-gray-900 p-4 rounded-lg shadow-lg overflow-y-auto max-h-[600px]">
-      <h2 className="text-xl font-bold text-white mb-4 flex items-center">
-        <Database className="mr-2" size={20} />
+    <div className="bg-gray-900/80 backdrop-blur-lg border border-gray-700 p-6 rounded-2xl shadow-2xl max-h-[600px] overflow-y-auto">
+      <h2 className="text-2xl font-bold text-white mb-5 flex items-center">
+        <Database className="mr-3 text-blue-400" size={24} />
         Configuration Panel
       </h2>
 
       {/* Save Configuration */}
-      <div className="mb-6 bg-gray-800 p-3 rounded-lg">
-        <h3 className="text-lg font-semibold text-white mb-2">Save Configuration</h3>
-        <div className="flex space-x-2">
+      <div className="mb-6 bg-gray-800/80 p-4 rounded-xl shadow-lg border border-gray-700">
+        <h3 className="text-lg font-semibold text-white mb-3">Save Configuration</h3>
+        <div className="flex space-x-3">
           <input
             type="text"
             value={configName}
             onChange={(e) => setConfigName(e.target.value)}
-            placeholder="Configuration name"
-            className="flex-1 px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter configuration name"
+            className="flex-1 px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             onClick={handleSave}
             disabled={!configName.trim() || isLoading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 flex items-center"
+            className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:opacity-80 transition-all flex items-center shadow-md disabled:opacity-50"
           >
-            <Save size={16} className="mr-1" />
+            <Save size={18} className="mr-2" />
             Save
           </button>
         </div>
       </div>
 
       {/* Load Configuration */}
-      <div className="mb-6 bg-gray-800 p-3 rounded-lg">
-        <h3 className="text-lg font-semibold text-white mb-2">Load Configuration</h3>
+      <div className="mb-6 bg-gray-800/80 p-4 rounded-xl shadow-lg border border-gray-700">
+        <h3 className="text-lg font-semibold text-white mb-3">Load Configuration</h3>
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-between"
+            className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-between"
           >
             <span>Select a configuration</span>
-            <Download size={16} />
+            <Download size={18} />
           </button>
-          
+
           {isDropdownOpen && (
-            <div className="absolute z-10 mt-1 w-full bg-gray-700 rounded-md shadow-lg max-h-60 overflow-auto">
+            <div className="absolute z-10 mt-2 w-full bg-gray-800 border border-gray-700 rounded-lg shadow-xl max-h-60 overflow-auto">
               {savedConfigs.length === 0 ? (
-                <div className="px-4 py-2 text-gray-300">No saved configurations</div>
+                <div className="px-4 py-3 text-gray-300">No saved configurations</div>
               ) : (
                 savedConfigs.map((config) => (
                   <button
@@ -86,7 +87,7 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
                         setIsDropdownOpen(false);
                       }
                     }}
-                    className="w-full text-left px-4 py-2 text-white hover:bg-gray-600 focus:outline-none"
+                    className="w-full text-left px-4 py-3 text-white hover:bg-gray-600 transition-all"
                   >
                     {config.name}
                   </button>
@@ -98,17 +99,17 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
       </div>
 
       {/* Planet Selection */}
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-white mb-2">Select Planet</h3>
-        <div className="grid grid-cols-4 gap-2">
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-white mb-3">Select Planet</h3>
+        <div className="grid grid-cols-4 gap-3">
           {planets.map((planet) => (
             <button
               key={planet.id}
               onClick={() => setSelectedPlanet(planet.id === selectedPlanet ? null : planet.id)}
-              className={`p-2 rounded-md text-center ${
+              className={`p-3 rounded-lg text-center text-sm font-medium transition-all shadow-md ${
                 planet.id === selectedPlanet
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+                  ? 'bg-blue-600 text-white border border-blue-400'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600 border border-gray-600'
               }`}
             >
               {planet.name}
@@ -118,15 +119,15 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
       </div>
 
       {/* Planet Controls */}
-      <div>
-        <h3 className="text-lg font-semibold text-white mb-2">Planet Properties</h3>
+      <div className="bg-gray-800/80 p-5 rounded-xl shadow-lg border border-gray-700">
+        <h3 className="text-lg font-semibold text-white mb-3">Planet Properties</h3>
         {selectedPlanet ? (
           <PlanetControls
-            planet={planets.find(p => p.id === selectedPlanet)!}
+            planet={planets.find((p) => p.id === selectedPlanet)!}
             onChange={onPlanetChange}
           />
         ) : (
-          <div className="text-gray-400 text-center p-4 bg-gray-800 rounded-lg">
+          <div className="text-gray-400 text-center p-5 bg-gray-700 rounded-lg border border-gray-600">
             Select a planet to modify its properties
           </div>
         )}

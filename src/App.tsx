@@ -89,71 +89,73 @@ function App() {
     }
   };
 
+ 
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <header className="bg-gray-800 p-4 shadow-md">
+    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
+      <header className="bg-gray-800 p-5 shadow-lg sticky top-0 z-10">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold flex items-center">
-            <Rocket className="mr-2" />
-            Interactive 3D Solar System
+          <h1 className="text-2xl font-bold flex items-center space-x-2">
+            <Rocket className="text-blue-400" />
+            <span>Solar System </span>
           </h1>
           <a 
             href="https://github.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white flex items-center"
+            className="text-gray-300 hover:text-blue-400 flex items-center space-x-1"
           >
-            <Github className="mr-1" size={20} />
+            <Github size={22} />
             <span>GitHub</span>
           </a>
         </div>
       </header>
 
       {!firebaseConfigured && (
-        <div className="container mx-auto mt-4 p-4 bg-yellow-800 text-yellow-100 rounded-lg flex items-start">
-          <AlertCircle className="mr-2 flex-shrink-0 mt-1" />
+        <div className="container mx-auto mt-6 p-4 bg-yellow-600 text-black rounded-lg flex items-center space-x-3">
+          <AlertCircle className="text-yellow-900" />
           <div>
             <h3 className="font-bold">Firebase Configuration Required</h3>
-            <p>
-              Please update the Firebase configuration in <code>src/firebase/config.ts</code> with your Firebase project details.
-              You'll need to create a Firebase project and enable Firestore.
-            </p>
+            <p>Update <code>src/firebase/config.ts</code> with your Firebase project details.</p>
           </div>
         </div>
       )}
 
       {error && (
-        <div className="container mx-auto mt-4 p-4 bg-red-800 text-red-100 rounded-lg flex items-center">
-          <AlertCircle className="mr-2" />
+        <div className="container mx-auto mt-6 p-4 bg-red-600 text-white rounded-lg flex items-center space-x-3">
+          <AlertCircle />
           <span>{error}</span>
         </div>
       )}
 
-      <main className="container mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <main className="container mx-auto p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <SolarSystem planets={planets} />
+            <div className="bg-gray-800 p-5 rounded-xl shadow-lg">
+              <SolarSystem planets={planets} />
+            </div>
           </div>
           <div>
-            <ConfigurationPanel
-              planets={planets}
-              onPlanetChange={handlePlanetChange}
-              onSaveConfig={handleSaveConfig}
-              onLoadConfig={handleLoadConfig}
-              savedConfigs={savedConfigs}
-              isLoading={isLoading}
-            />
+            <div className="bg-gray-800 p-5 rounded-xl shadow-lg">
+              <ConfigurationPanel
+                planets={planets}
+                onPlanetChange={handlePlanetChange}
+                onSaveConfig={handleSaveConfig}
+                onLoadConfig={handleLoadConfig}
+                savedConfigs={savedConfigs}
+                isLoading={isLoading}
+              />
+            </div>
           </div>
         </div>
       </main>
 
-      <footer className="bg-gray-800 p-4 mt-8">
-        <div className="container mx-auto text-center text-gray-400">
-          <p>Interactive 3D Solar System - Built with React, Three.js, and Firebase</p>
-        </div>
+      <footer className="bg-gray-800 p-6 mt-8 text-center text-gray-300 border-t border-gray-700">
+       
       </footer>
     </div>
   );
+
 }
 
 export default App;

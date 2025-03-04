@@ -115,7 +115,7 @@ const SolarSystem: React.FC<SolarSystemProps> = ({ planets }) => {
   return (
     <div className="w-full h-[600px]">
       <Canvas camera={{ position: [0, 30, 80], fov: 60 }}>
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={1} />
         <Sun />
         {planets.map((planet) => (
           <Planet key={planet.id} config={planet} />

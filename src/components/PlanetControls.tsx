@@ -72,6 +72,8 @@ const PlanetControls: React.FC<PlanetControlsProps> = ({ planet, onChange }) => 
       </div>
     </div>
   );
+
+  
 };
 
 export default PlanetControls;
